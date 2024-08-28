@@ -1,17 +1,17 @@
 import React from "react";
 import EstiloGlobal, { Container } from "./styles/index.ts";
-import BarraLateral from "./containers/BarraLateral/index.tsx";
-import ListaDeTarefas from "./containers/ListaDeTarefa/index.tsx";
+import ListaDeContato from "./containers/ListaDeContato/index.tsx";
+import Header from "./containers/Header/index.tsx";
 
 function App() {
   return (
-    <>
+    <div>
       <EstiloGlobal />
+      <Header />
       <Container>
-        <BarraLateral />
-        <ListaDeTarefas />
+        <ListaDeContato />
       </Container>
-    </>
+    </div>
   );
 }
 
