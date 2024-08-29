@@ -13,6 +13,7 @@ const EstiloGlobal = createGlobalStyle`
 export const Container = styled.div`
   max-width: 1024px;
   margin: 0 auto;
+  background-color: #c6e5b1;
 `;
 
 export default EstiloGlobal;
