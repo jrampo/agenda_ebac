@@ -1,40 +1,30 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { RootReducer } from "../../store/index.ts";
+
 import Contato from "../Contato/index.tsx";
+
 import * as S from "./styles.ts";
 
-const contatos = [
-  {
-    nome: "roberval",
-    email: "roberval@gmail.com",
-    telefone: "3333-2222",
-  },
-  {
-    nome: "tião",
-    email: "tiao@gmail.com",
-    telefone: "3333-1111",
-  },
-  {
-    nome: "toloy",
-    email: "toloy@gmail.com",
-    telefone: "5555-2222",
-  },
-  {
-    nome: "chicão",
-    email: "chicao@gmail.com",
-    telefone: "1111-2222",
-  },
-];
+const ListaDeContatos = () => {
+  const { itens } = useSelector((state: RootReducer) => state.contatos);
 
-const ListaDeContatos = () => (
-  <S.Container>
-    <ul>
-      {contatos.map((c) => (
-        <li>
-          <Contato nome={c.nome} email={c.email} telefone={c.telefone} />
-        </li>
-      ))}
-    </ul>
-  </S.Container>
-);
+  return (
+    <S.Container>
+      <ul>
+        {itens.map((c) => (
+          <li>
+            <Contato
+              id={c.id}
+              nome={c.nome}
+              email={c.email}
+              telefone={c.telefone}
+            />
+          </li>
+        ))}
+      </ul>
+    </S.Container>
+  );
+};
 
 export default ListaDeContatos;
