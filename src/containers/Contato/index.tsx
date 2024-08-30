@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import * as S from "./styles.ts";
-import { remover } from "../../store/reducers/contatos.ts";
+import { remover, editar } from "../../store/reducers/contatos.ts";
 import ContatoClass from "../../models/Contato.ts";
 
 type Props = ContatoClass;
@@ -36,27 +36,55 @@ const Contato = ({
     if (telefoneOriginal.length > 0) {
       setTelefone(telefoneOriginal);
     }
-  }, [nomeOriginal]);
+  }, [telefoneOriginal]);
+
+  function cancelarEdicao() {
+    setEstaEditando(false);
+    setNome(nomeOriginal);
+    setEmail(emailOriginal);
+    setTelefone(telefoneOriginal);
+  }
 
   return (
     <S.Card>
       <S.Nome
+        disabled={!estaEditando}
         value={nome}
         onChange={(evento) => setNome(evento.target.value)}
       />
       <S.Email
+        disabled={!estaEditando}
         value={email}
         onChange={(evento) => setEmail(evento.target.value)}
       />
       <S.Telefone
+        disabled={!estaEditando}
         value={telefone}
         onChange={(evento) => setTelefone(evento.target.value)}
       />
       <S.BarraAcoes>
         {estaEditando ? (
           <>
-            <S.BotaoSalvar>Salvar</S.BotaoSalvar>
-            <S.BotaoCancelarRemover onClick={() => setEstaEditando(false)}>
+            <S.BotaoSalvar
+              onClick={() => {
+                dispatch(
+                  editar({
+                    nome,
+                    email,
+                    telefone,
+                    id,
+                  })
+                );
+                setEstaEditando(false);
+              }}
+            >
+              Salvar
+            </S.BotaoSalvar>
+            <S.BotaoCancelarRemover
+              onClick={() => {
+                cancelarEdicao();
+              }}
+            >
               Cancelar
             </S.BotaoCancelarRemover>
           </>
