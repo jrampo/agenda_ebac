@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import * as S from "./styles.ts";
@@ -6,15 +6,52 @@ import { remover } from "../../store/reducers/contatos.ts";
 import ContatoClass from "../../models/Contato.ts";
 
 type Props = ContatoClass;
-const Contato = ({ nome, email, telefone, id }: Props) => {
-  const [estaEditando, setEstaEditando] = useState(false);
+const Contato = ({
+  nome: nomeOriginal,
+  email: emailOriginal,
+  telefone: telefoneOriginal,
+  id,
+}: Props) => {
   const dispatch = useDispatch();
+
+  const [estaEditando, setEstaEditando] = useState(false);
+
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+  const [telefone, setTelefone] = useState("");
+
+  useEffect(() => {
+    if (nomeOriginal.length > 0) {
+      setNome(nomeOriginal);
+    }
+  }, [nomeOriginal]);
+
+  useEffect(() => {
+    if (emailOriginal.length > 0) {
+      setEmail(emailOriginal);
+    }
+  }, [emailOriginal]);
+
+  useEffect(() => {
+    if (telefoneOriginal.length > 0) {
+      setTelefone(telefoneOriginal);
+    }
+  }, [nomeOriginal]);
 
   return (
     <S.Card>
-      <S.Nome>{nome}</S.Nome>
-      <S.Email>{email}</S.Email>
-      <S.Telefone>{telefone}</S.Telefone>
+      <S.Nome
+        value={nome}
+        onChange={(evento) => setNome(evento.target.value)}
+      />
+      <S.Email
+        value={email}
+        onChange={(evento) => setEmail(evento.target.value)}
+      />
+      <S.Telefone
+        value={telefone}
+        onChange={(evento) => setTelefone(evento.target.value)}
+      />
       <S.BarraAcoes>
         {estaEditando ? (
           <>
