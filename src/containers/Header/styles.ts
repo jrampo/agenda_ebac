@@ -17,15 +17,3 @@ export const Container = styled.div`
   margin: 0 auto;
   padding: 15px;
 `;
-
-export const Botao = styled.button`
-  background-color: #519259;
-  border: none;
-  padding: 20px;
-  border-radius: 30%;
-  font-size: 20px;
-  color: #fff;
-  margin-right: 5px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-`;

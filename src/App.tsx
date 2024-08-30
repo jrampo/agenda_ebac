@@ -6,6 +6,7 @@ import store from "./store/index.ts";
 import EstiloGlobal, { Container } from "./styles/index.ts";
 import Header from "./containers/Header/index.tsx";
 import Home from "./pages/Home/index.tsx";
+import Adicionar from "./pages/Adicionar/index.tsx";
 
 const rotas = createBrowserRouter([
   {
@@ -14,7 +15,7 @@ const rotas = createBrowserRouter([
   },
   {
     path: "/adicionar",
-    element: <h1>novo contato</h1>,
+    element: <Adicionar />,
   },
 ]);
 

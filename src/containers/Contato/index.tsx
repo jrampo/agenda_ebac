@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import * as S from "./styles.ts";
+
 import { remover, editar } from "../../store/reducers/contatos.ts";
 import ContatoClass from "../../models/Contato.ts";
 

@@ -51,9 +51,21 @@ const contatosSlice = createSlice({
         state.itens[indexDoContato] = action.payload;
       }
     },
+    cadastrar: (state, action: PayloadAction<Contato>) => {
+      const contatoJaExistente = state.itens.find(
+        (contato) =>
+          contato.nome.toLowerCase() === action.payload.nome.toLowerCase()
+      );
+
+      if (contatoJaExistente) {
+        alert("Esse contato ja existe");
+      } else {
+        state.itens.push(action.payload);
+      }
+    },
   },
 });
 
-export const { remover, editar } = contatosSlice.actions;
+export const { remover, editar, cadastrar } = contatosSlice.actions;
 
 export default contatosSlice.reducer;
