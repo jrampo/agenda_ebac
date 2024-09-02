@@ -14,7 +14,7 @@ const Formulario = () => {
 
   const cadastrarTarefa = (evento: FormEvent) => {
     evento.preventDefault();
-    const contatoParaAdicionar = new Contato(nome, email, telefone, 1);
+    const contatoParaAdicionar = new Contato(nome, email, telefone, 9);
     dispatch(cadastrar(contatoParaAdicionar));
     navigate("/");
   };
@@ -22,7 +22,7 @@ const Formulario = () => {
   return (
     <S.Card>
       <S.Titulo>Adicionar novo contato</S.Titulo>
-      <S.DivFlex onSubmit={cadastrarTarefa}>
+      <S.DivFlex>
         <S.Inputs
           value={nome}
           onChange={(evento) => setNome(evento.target.value)}
@@ -38,7 +38,9 @@ const Formulario = () => {
           onChange={(evento) => setTelefone(evento.target.value)}
           placeholder="Telefone"
         />
-        <S.Botao type="submit">Enviar</S.Botao>
+        <S.Botao type="submit" onClick={cadastrarTarefa}>
+          Enviar
+        </S.Botao>
       </S.DivFlex>
     </S.Card>
   );

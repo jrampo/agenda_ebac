@@ -13,7 +13,7 @@ const ListaDeContatos = () => {
     <S.Container>
       <ul>
         {itens.map((c) => (
-          <li>
+          <li key={c.id}>
             <Contato
               id={c.id}
               nome={c.nome}
